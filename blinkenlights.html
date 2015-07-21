@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Raphael test</title>
+
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/blinkenlight.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            var element = document.getElementById('canvas_container');
+            var paper = new Raphael(element,500,500);
+
+            var blinker1 = new BlinkenLight(paper,200,400,60,"#DDDD00","#444400", "#FFFF00");
+            blinker1.turnOff();
+
+            var blinker2 = new BlinkenLight(paper,400,400,60,"#00DD00","#004400", "#00FF00", function()
+            {
+                blinker2.stop();
+            });
+            blinker2.turnOn();
+
+            blinker2.setInterval(500);
+            blinker2.start();
+
+           
+
+
+        });
+    </script>
+
+
+
+
+</head>
+<body>
+        <div id="canvas_container" style="width:500px;border:1px solid; border-color:black; background: black"></div>
+</body>
+</html>
