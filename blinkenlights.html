@@ -5,37 +5,57 @@
     <title>Raphael test</title>
 
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+	
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="js/blinkenlight.js"></script>
+	
     <script type="text/javascript">
         $(document).ready(function()
         {
-            var element = document.getElementById('canvas_container');
-            var paper = new Raphael(element,500,500);
+                $( "#dialog" ).dialog(
+				{
+					autoOpen: false,
+					show: 
+					{
+						effect: "size",
+						duration: 1000
+					},
+					hide: 
+					{
+						effect: "size",
+						duration: 1000
+					},
+					width: 'auto'
+				});
+			
+			var element = document.getElementById('canvas_container');
+            var paper = new Raphael(element,200,80);
 
-            var blinker1 = new BlinkenLight(paper,200,400,60,"#DDDD00","#444400", "#FFFF00");
-            blinker1.turnOff();
 
-            var blinker2 = new BlinkenLight(paper,400,400,60,"#00DD00","#004400", "#00FF00", function()
+			var blinker1 = new BlinkenLight(paper,100,40,20,"#00DDDD","#004444", "#00FFFF");
+            var blinker2 = new BlinkenLight(paper,40,40,20,"#00DD00","#004400", "#00FF00", "Click me", function()
             {
                 blinker2.stop();
+				blinker2.turnOff();
+				$('#dialog').html('<img id="theImg" src="http://images4.fanpop.com/image/photos/16100000/Cute-Kitten-kittens-16123796-1280-800.jpg" />')
+			   $( "#dialog" ).dialog( "open" );
+			   
             });
-            blinker2.turnOn();
 
-            blinker2.setInterval(500);
+			blinker1.turnOn();
+			blinker2.setInterval(500);
             blinker2.start();
-
-           
 
 
         });
     </script>
-
-
-
-
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
-<body>
-        <div id="canvas_container" style="width:500px;border:1px solid; border-color:black; background: black"></div>
+<body style="background-color: black">
+        <div id="canvas_container" style="background: transparent"></div>
+		<div id="dialog" title="Meow!">
+		</div>
+		
 </body>
 </html>
