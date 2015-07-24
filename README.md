@@ -1,4 +1,4 @@
-# README #
+# BLINKENLIGHT #
 
 A blinking light made with Raphael.js 
 
